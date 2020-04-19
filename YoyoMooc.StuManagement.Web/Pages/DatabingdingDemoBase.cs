@@ -15,7 +15,7 @@ namespace YoyoMooc.StuManagement.Web.Pages
         protected string Gender { get; set; } = "女";
 
 
-        protected string Colour { get; set; } = "background-color:white";
+        protected string Colour { get; set; } = "background-color:yellow";
 
 
         

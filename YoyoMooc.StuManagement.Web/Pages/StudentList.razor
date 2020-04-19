@@ -2,21 +2,21 @@
 @inherits StudentListBase
 <h3>学生列表</h3>
  
-<h3>立个Flag，做一个yoyomooc的网站门户端采用blazor</h3>
+<h3>
+
+网站采用<a href="https://docs.microsoft.com/zh-cn/aspnet/core/blazor/?view=aspnetcore-3.1">Blazor</a> 开发完成 </h3>
 
 <ul>
+	<li>整个网站没有包含一行javascript和ts文件</li>
 	<li>Angular、Vue、React 的SSO问题，Blazor 解决了</li>
-	<li>前端项目编译慢的问题，Blazor解决了</li>
-	<li>双向绑定的问题解决了，优秀。</li>
+	<li>前端项目编译Angular、Vue、React慢的问题，Blazor解决了</li>
+	<li>传统MVC、RazorPage在Ajax上需要通过js进行Dom操作的问题，被Blazor解决了双向绑定问题解决了，优秀。</li>
 </ul>
  
 
 @if (Students==null)
 {
-	<div class="spinner">
-
-
-	</div>
+	<div class="spinner"></div>
 }
 else
 {

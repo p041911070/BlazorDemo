@@ -1,55 +1,51 @@
 @page "/chatmessage"
-@using Microsoft.AspNetCore.SignalR.Client
-@inject NavigationManager NavigationManager
+@inherits ChatMessageBase
+
+
+
+<h3>这是一个聊天Demo</h3>
+
+<h4>开两个地址栏，输入不同的用户名，发送的信息即可跨浏览器页面收到实时聊天功能</h4>
+
+
+
+
 
 <div class="form-group">
-	<label>
-		User:
-		<input @bind="_userInput" />
-	</label>
-</div>
-<div class="form-group">
-	<label>
-		Message:
-		<input @bind="_messageInput" size="50" />
-	</label>
-</div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+	<label for="my-input">用户名:</label>
+	<input id="my-input" class="form-control" type="text" @bind="_userInput" placeholder="请输入用户名" aria-label="请输入用户名">
 
+</div>
+
+
+<div class="form-group">
+	<label for="my-textarea">Text</label>
+	<textarea id="my-textarea" class="form-control" laceholder="请输入你要发送的信息" @bind="_messageInput" rows="5"></textarea>
+</div>
+
+ 
+<button class="btn btn-primary" type="button"   @onclick="Send" disabled="@(!IsConnected)" >发送</button>
+ 
 <hr>
 
-<ul id="messagesList">
-	@foreach (var message in _messages)
-	{
-		<li>@message</li>
-	}
-</ul>
 
-@code {
-	private HubConnection _hubConnection;
-	private List<string> _messages = new List<string>();
-	private string _userInput;
-	private string _messageInput;
+<div class="border-info border">
 
-	protected override async Task OnInitializedAsync()
-	{
-		_hubConnection = new HubConnectionBuilder()
-			.WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
-			.Build();
+	<p>聊天记录</p>
 
-		_hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+
+	<ul id="messagesList" class="mt-5">
+
+
+
+
+		@foreach (var message in _messages)
 		{
-			var encodedMsg = $"{user}: {message}";
-			_messages.Add(encodedMsg);
-			StateHasChanged();
-		});
+			<li>@message</li>
+		}
+	</ul>
 
-		await _hubConnection.StartAsync();
-	}
+</div>
 
-	Task Send() =>
-		_hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
 
-	public bool IsConnected =>
-		_hubConnection.State == HubConnectionState.Connected;
-}
+

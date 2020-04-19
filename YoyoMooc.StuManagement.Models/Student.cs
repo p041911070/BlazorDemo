@@ -8,8 +8,8 @@ namespace YoyoMooc.StuManagement.Models
     public class Student
     {
 
-        [Required]
-        [StringLength(100, MinimumLength = 2)]
+        [Required(ErrorMessage ="学生姓名不能为空")]
+        [StringLength(100, MinimumLength = 2,ErrorMessage ="最大长度100，最小长度2")]
         public string StudentName { get; set; }
         public int StudentId { get; set; }
 

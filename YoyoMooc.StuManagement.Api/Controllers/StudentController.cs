@@ -153,7 +153,7 @@ namespace YoyoMooc.StuManagement.Api.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
+                    "从数据库检索数据出错");
             }
         }
 

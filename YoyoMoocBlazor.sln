@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoyoMooc.StuManagement.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoyoMooc.StuManagement.Web", "YoyoMooc.StuManagement.Web\YoyoMooc.StuManagement.Web.csproj", "{142FBC8C-76A9-4349-99BB-7EDC58C00BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoMooc.StuManagement.Api", "YoyoMooc.StuManagement.Api\YoyoMooc.StuManagement.Api.csproj", "{B33490AB-4BD5-423C-98D3-62C3ECB49008}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoyoMooc.StuManagement.Api", "YoyoMooc.StuManagement.Api\YoyoMooc.StuManagement.Api.csproj", "{B33490AB-4BD5-423C-98D3-62C3ECB49008}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

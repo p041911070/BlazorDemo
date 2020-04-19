@@ -14,6 +14,10 @@
 </ul>
  
 
+
+
+<h4> <a href="/student/add">添加</a></h4>
+
 @if (Students==null)
 {
 	<div class="spinner"></div>
@@ -29,24 +33,20 @@ else
 			</div>
 			<img class="card-img-top imageThumbnail" src="@student.PhotoPath"  />
 			<div class="card-footer text-center">
-				<a href="@($"studentdetails/{student.StudentId}")" class="btn btn-primary m-1">查看</a>
+				<a href="@($"student/details/{student.StudentId}")" class="btn btn-primary m-1">查看</a>
 
 				<a href="#" class="btn btn-primary m-1">编辑</a>
-
-
-				<span id="confirmDeleteSpan_@student.StudentId" style="display:none">
-					<span>你确定你要删除?</span>
-					<button type="submit" class="btn btn-danger">是</button>
-					<a href="#" class="btn btn-primary"
-					   @onclick="@(()=>ConfirmDelete(student, false))">否</a>
-				</span>
+				 
 
 				<span id="deleteSpan_@student.StudentId">
 					<a href="#" class="btn btn-danger"
-					   @onclick="@(()=>ConfirmDelete(student, true))">删除</a>
+					 @onclick="@(()=>ConfirmDelete(student, true))">删除</a>
 				</span>
 
-				 
+
+
+
+
 			</div>
 		</div>
 	}

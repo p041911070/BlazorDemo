@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using YoyoMooc.StuManagement.Api.Services;
 using YoyoMooc.StuManagement.Models;
-using YoyoMooc.StuManagement.Models.enums;
 
 namespace YoyoMooc.StuManagement.Web.Pages
 {
@@ -17,9 +12,8 @@ namespace YoyoMooc.StuManagement.Web.Pages
 		[Inject]
 		public IStudentService _studentService { get; set; }
 
-		 
-		public IEnumerable<Student> Students { get; set; }
-
+		[Parameter]
+		public List<Student> Students { get; set; }
 
 		protected override async Task OnInitializedAsync()
 		{
@@ -27,18 +21,25 @@ namespace YoyoMooc.StuManagement.Web.Pages
 		}
 
 
-		protected async Task ConfirmDelete(Student student,bool isConfirm){
 
+		/// <summary>
+		/// 确认删除
+		/// </summary>
+		/// <param name="student"></param>
+		/// <param name="isConfirm"></param>
+		/// <returns></returns>
+		protected async Task ConfirmDelete(Student student, bool isConfirm)
+		{
 			if (isConfirm)
 			{
-			await	_studentService.DeleteStudent(student.StudentId);
-				//Students.ToList().Remove(student);
-			await	OnInitializedAsync();
+				await _studentService.DeleteStudent(student.StudentId);
+				Students.Remove(student);
+				StateHasChanged();
 			}
-			 
 		}
 
 
+		 
 
 	}
 }

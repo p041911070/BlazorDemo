@@ -1,5 +1,6 @@
+@page "/student/add/{id}"
 @page "/student/add"
-@inherits CreateStudentbase
+@inherits CreateOrEditStudentbase
 
 <h1>添加学生信息</h1>
 
@@ -7,7 +8,7 @@
 <div class="row">
 	<div class="col-md-6">
 
-		<EditForm Model="@Student">
+		<EditForm Model="@Student"   OnValidSubmit="HandleValidSubmit">
 			<DataAnnotationsValidator />
 			<ValidationSummary />
 
@@ -39,25 +40,21 @@
 
 				<label class="control-label">部门</label>
 
-				<InputSelect class="form-control" @bind-Value="Student.DepartmentId">
-					<option value="">请选择部门 ...</option>
+
+				<select class="form-control" @bind="@Student.DepartmentId">
+					<option value="0">请选择部门 ...</option>
 					<option value="1">哪都通</option>
 					<option value="2">龙虎山天师府</option>
 					<option value="3">武侯奇门</option>
 					<option value="4">编辑室</option>
-				</InputSelect>
+				</select>
+
+
 			</div>
 
-			<div class="form-group">
-				<label class="control-label">性别</label>
-				<InputSelect class="form-control" @bind-Value="Student.Gender">
-					<option value="">性别 ...</option>
-					<option value="0">女性</option>
-					<option value="1">男性</option>
-					<option value="2">不显示</option>
-					 
-				</InputSelect>
-			</div>
+		 
+
+
 
 
 			<button type="submit">提交</button>

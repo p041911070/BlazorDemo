@@ -38,7 +38,7 @@ namespace YoyoMooc.StuManagement.Api.Services
 
         public async  Task<Student> UpdateStudent(Student student)
         {
-        return  await  httpClient.PutJsonAsync<Student>($"api/student/", student);
+        return  await  httpClient.PutJsonAsync<Student>($"api/student/{student.StudentId}",student);
         }
 
 

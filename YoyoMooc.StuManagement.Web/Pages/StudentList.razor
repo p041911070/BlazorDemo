@@ -1,0 +1,42 @@
+@page "/"
+@inherits StudentListBase
+<h3>学生列表</h3>
+ 
+<h3>立个Flag，做一个yoyomooc的网站门户端采用blazor</h3>
+
+<ul>
+	<li>Angular、Vue、React 的SSO问题，Blazor 解决了</li>
+	<li>前端项目编译慢的问题，Blazor解决了</li>
+	<li>双向绑定的问题解决了，优秀。</li>
+</ul>
+ 
+
+@if (Students==null)
+{
+	<div class="spinner">
+
+
+	</div>
+}
+else
+{
+<div class="card-deck">
+	@foreach (var student in Students)
+	{
+		<div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+			<div class="card-header">
+				<h3>@student.StudentName </h3>
+			</div>
+			<img class="card-img-top imageThumbnail" src="@student.PhotoPath"  />
+			<div class="card-footer text-center">
+				<a href="@($"studentdetails/{student.StudentId}")" class="btn btn-primary m-1">查看</a>
+ 
+				<a href="#" class="btn btn-primary m-1">编辑</a>
+
+				<a href="#" class="btn btn-danger m-1">删除</a>
+			</div>
+		</div>
+	}
+</div>
+}
+

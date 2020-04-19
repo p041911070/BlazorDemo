@@ -33,16 +33,12 @@ namespace YoyoMooc.StuManagement.Web
 
 			services.AddSignalR();
 
-			var baseAddress = "";
-
+			var baseAddress = Configuration["baseAddress"];
+	 
 
 			if (env.IsDevelopment())
 			{
 				baseAddress = "http://localhost:3238/";
-			}
-			else
-			{
-				baseAddress = "http://blazorapi.52abp.com/";
 			}
 			 
 

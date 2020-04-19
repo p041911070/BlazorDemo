@@ -13,6 +13,9 @@ namespace YoyoMooc.StuManagement.Api.Services
        
 
         Task<IEnumerable<Student>> GetStudents();
-        Task<Student> GetStudent(int Id);
+        Task<Student> GetStudent(int id);
+        Task<Student> CreateStudent(Student student);
+        Task<Student> UpdateStudent(Student student);
+        Task DeleteStudent(int id);
     }
 }

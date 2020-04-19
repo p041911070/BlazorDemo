@@ -21,7 +21,7 @@ namespace YoyoMooc.StuManagement.Web.Pages
         public string Id { get; set; }
 
 
-        protected string ButtonText { get; set; } = "Hide Footer";
+        protected string ButtonText { get; set; } = "隐藏页脚";
 
         public string CssClass { get; set; } = null;
 

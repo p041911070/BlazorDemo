@@ -18,6 +18,30 @@ namespace YoyoMooc.StuManagement.Api.Services
             this.httpClient = httpClient;
         }
 
+        public async Task<Student> CreateStudent(Student student)
+        {
+
+         var result=  await  httpClient.PostJsonAsync<Student>($"api/student/",student);
+
+            return result;
+
+           
+ 
+        }
+
+        public async Task DeleteStudent(int id)
+        {
+         var  result= await httpClient.DeleteAsync($"api/student/{id}");
+
+            
+        }
+
+        public async  Task<Student> UpdateStudent(Student student)
+        {
+        return  await  httpClient.PutJsonAsync<Student>($"api/student/", student);
+        }
+
+
         public async Task<Student> GetStudent(int id)
         {
             return await httpClient.GetJsonAsync<Student>($"api/student/{id}");
@@ -27,5 +51,7 @@ namespace YoyoMooc.StuManagement.Api.Services
         {
             return await httpClient.GetJsonAsync<Student[]>("api/student");
         }
+
+      
     }
 }

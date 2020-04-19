@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using YoyoMooc.StuManagement.Api.Services;
 using YoyoMooc.StuManagement.Models;
+using YoyoMooc.StuManagement.Web.Hubs;
 
 namespace YoyoMooc.StuManagement.Web
 {
@@ -29,6 +30,9 @@ namespace YoyoMooc.StuManagement.Web
 		{
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
+
+			services.AddSignalR();
+
 			services.AddHttpClient<IStudentService, StudentService>(client => {
 
 				client.BaseAddress = new Uri("http://localhost:3238/");
@@ -54,6 +58,8 @@ namespace YoyoMooc.StuManagement.Web
 
 			app.UseEndpoints(endpoints =>
 			{
+				endpoints.MapHub<ChatHub>("/chatHub");
+
 				endpoints.MapBlazorHub();
 				endpoints.MapFallbackToPage("/_Host");
 			});

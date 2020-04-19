@@ -11,7 +11,7 @@ namespace YoyoMooc.StuManagement.Web.Pages
     {
 
 
-        protected string Name { get; set; } = "法外狂徒-张三";
+        protected string Name { get; set; } = "张三";
         protected string Gender { get; set; } = "女";
 
 

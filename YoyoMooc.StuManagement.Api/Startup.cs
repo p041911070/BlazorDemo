@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using YoyoMooc.StuManagement.Api.Data;
+using YoyoMooc.StuManagement.Api.Data.seed;
 using YoyoMooc.StuManagement.Api.Repos;
 using YoyoMooc.StuManagement.Models;
 
@@ -54,6 +55,25 @@ namespace YoyoMooc.StuManagement.Api
 			{
 				endpoints.MapControllers();
 			});
+
+
+			if ((Configuration["INITDB"] ?? "false") == "true")
+			{
+				System.Console.WriteLine("准备数据库……");
+
+
+				app.UseDataInitializer();
+
+
+				System.Console.WriteLine("数据库初始化完成");
+			}
+			else
+			{
+				System.Console.WriteLine("启动 ASP.NET Core 深入浅出Docker...");
+			}
+
+
+
 		}
 	}
 }

@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+    mssql:
+        image: registry.cn-hangzhou.aliyuncs.com/yoyosoft/mssql:2019-latest
+        ports:
+            - 1438:1433
+        volumes:
+            - "./mssqlData:/var/opt/mssql/"
+        networks:
+            - backend
+        environment:
+            - SA_PASSWORD=bb123456??
+            - ACCEPT_EULA=Y
+
+    webapi:
+        image: yoyomooc/blazorapiemo
+        ports:
+            - 9898:80
+        networks:
+            - backend
+        environment:
+            - WAITHOST=mssql
+            - WAITPORT=1433
+            - ConnectionStrings__DBConnection=Server=mssql;Database=StudentDb_Blazor;User Id=sa;Password=bb123456??
+            - INITDB=true
+
+            - ASPNETCORE_ENVIRONMENT=Development
+        depends_on:
+            - mssql
+
+    blazor:
+        image: yoyomooc/blazorwebdemo
+        ports:
+            - "9899:80"
+        networks:
+            - backend
+            - frontend
+        environment:
+            - WAITHOST=mssql
+            - WAITPORT=1433
+            - baseAddress=http://webapi/
+            - ConnectionStrings__DBConnection=Server=mssql;Database=StudentDb_Blazor;User Id=sa;Password=bb123456??;
+            - DBHOST=mysql
+            - ASPNETCORE_ENVIRONMENT=Development
+        depends_on:
+            - mssql
+
+    loadbalancer:
+        image: dockercloud/haproxy:1.2.1
+        ports:
+            - 3000:80
+        links:
+            - blazor
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - frontend
+
+networks:
+    frontend:
+    backend:

@@ -17,5 +17,10 @@
     <ProjectReference Include="..\YoyoMooc.StuManagement.Models\YoyoMooc.StuManagement.Models.csproj" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

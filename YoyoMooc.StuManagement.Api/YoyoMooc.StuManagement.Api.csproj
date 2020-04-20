@@ -16,6 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\YoyoMooc.StuManagement.Models\YoyoMooc.StuManagement.Models.csproj" />
   </ItemGroup>
-
+	
 
 </Project>

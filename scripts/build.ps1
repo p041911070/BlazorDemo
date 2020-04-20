@@ -53,13 +53,24 @@ docker build -t yoyomooc/blazorwebdemo .
 ## api
 
 Set-Location (Join-Path $outputFolder "api")
-docker rmi yoyomooc/blazorapiemo -f
+docker rmi yoyomooc/blazorapidemo -f
 
-docker build -t yoyomooc/blazorapiemo .
+docker build -t yoyomooc/blazorapidemo .
 
 
 ## DOCKER COMPOSE FILES #######################################################
 
 Copy-Item (Join-Path $buildFolder "docker/*.*") $outputFolder
 
- Set-Location $buildFolder
+
+docker tag  yoyomooc/blazorapidemo registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo
+
+docker tag  yoyomooc/blazorwebdemo registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo
+
+
+docker push  registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo
+docker push  registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo
+
+
+
+Set-Location $buildFolder

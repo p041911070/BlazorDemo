@@ -6,7 +6,7 @@ services:
         ports:
             - 1438:1433
         volumes:
-            - "./mssqlData:/var/opt/mssql/"
+            - mssqlData:/var/opt/mssql/
         networks:
             - backend
         environment:
@@ -14,7 +14,7 @@ services:
             - ACCEPT_EULA=Y
 
     webapi:
-        image: yoyomooc/blazorapiemo
+        image: registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo
         ports:
             - 9898:80
         networks:
@@ -30,7 +30,7 @@ services:
             - mssql
 
     blazor:
-        image: yoyomooc/blazorwebdemo
+        image: registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo
         ports:
             - "9899:80"
         networks:
@@ -47,15 +47,23 @@ services:
             - mssql
 
     loadbalancer:
-        image: dockercloud/haproxy:1.2.1
+        image: dockercloud/haproxy:latest
         ports:
+            - "5000:5000"
+            - "1936:1936"
             - 3000:80
+        environment:
+            - DNS_ENABLED=true
+            - LOG_LEVEL=info
         links:
             - blazor
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
             - frontend
+
+volumes:
+    mssqlData:
 
 networks:
     frontend:

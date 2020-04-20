@@ -18,7 +18,7 @@ namespace YoyoMooc.StuManagement.Web.Pages
 		protected async override Task OnInitializedAsync()
 		{
 			_hubConnection = new HubConnectionBuilder()
-				.WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+				.WithUrl(NavigationManager.ToAbsoluteUri("http://localhost/chatHub"))
 				.Build();
 
 			_hubConnection.On<string, string>("ReceiveMessage", (user, message) =>

@@ -1,12 +1,17 @@
 # YoyoMooc.BlazorDemo
 
+大家好，我使用Blazor 做了一个Demo，
 
+
+临时预览地址： http://106.13.51.165:3000/
 
 网站Demo采用Blazor 开发完成,整个网站没有包含一行javascript和ts文件
 
-- Angular、Vue、React 的SSO问题，Blazor 解决了
-- 前端项目编译Angular、Vue、React慢的问题，Blazor解决了
-- 传统MVC、RazorPage在Ajax上需要通过js进行Dom操作的问题，被Blazor解决了双向绑定问题解决了，优秀。
+- Blazor 解决了 Angular、Vue、React 的SSO问题，
+- Blazor解决了 前端项目编译Angular、Vue、React慢的问题，
+- 传统MVC、RazorPage在Ajax上需要通过js进行Dom操作的问题，被Blazor解决了双向绑定问题解决了，
+
+#### 总结一下，优秀
 
 - Demo源代码：https://github.com/yoyomooc/BlazorDemo
 

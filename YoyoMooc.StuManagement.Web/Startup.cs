@@ -44,21 +44,48 @@ namespace YoyoMooc.StuManagement.Web
 			if (env.IsDevelopment())
 			{
 				baseAddress = "http://localhost:3238/";
+
+
+				baseAddress = "https://localhost:44312/";
 			}
 
 
 			baseAddress = Configuration["baseAddress"];
 
-
+			 
 			services.AddHttpClient<IStudentService, StudentService>(client => {
+
+
+	
 
 				client.BaseAddress = new Uri(baseAddress);
 
 			});
-		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app)
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			}
+
+			// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+			public void Configure(IApplicationBuilder app)
 		{
 			if (env.IsDevelopment())
 			{

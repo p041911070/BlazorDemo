@@ -31,8 +31,7 @@ services:
 
     blazor:
         image: registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorwebdemo
-        ports:
-            - "9899:80"
+
         networks:
             - backend
             - frontend

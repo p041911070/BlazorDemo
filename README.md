@@ -1,4 +1,11 @@
+
+![.NET Core](https://github.com/yoyomooc/BlazorDemo/workflows/.NET%20Core/badge.svg) 
+![Docker Image CI](https://github.com/yoyomooc/BlazorDemo/workflows/Docker%20Image%20CI/badge.svg)
 # YoyoMooc.BlazorDemo
+
+
+
+
 
 大家好，我使用Blazor 做了一个Demo，
 

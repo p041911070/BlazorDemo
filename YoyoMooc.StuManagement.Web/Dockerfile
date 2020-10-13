@@ -13,7 +13,7 @@ RUN chmod +x wait-for-it.sh
  
 EXPOSE 80
 # 测试 数据库连接的地址
-ENV WAITHOST=HostName WAITPORT=1433
+ENV WAITHOST=localhost WAITPORT=1433
 
 ## 接口ok后再执行dotnet入口
 ENTRYPOINT ./wait-for-it.sh $WAITHOST:$WAITPORT --timeout=0 \

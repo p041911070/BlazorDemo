@@ -6,7 +6,7 @@ services:
         ports:
             - 1438:1433
         volumes:
-            - mssqlData:/var/opt/mssql/
+            - blazormssqlData:/var/opt/mssql/
         networks:
             - backend
         environment:
@@ -16,7 +16,7 @@ services:
     webapi:
         image: registry.cn-hangzhou.aliyuncs.com/yoyosoft/blazorapidemo
         ports:
-            - 9898:80
+            - 3001:80
         networks:
             - backend
         environment:
@@ -24,8 +24,6 @@ services:
             - WAITPORT=1433
             - ConnectionStrings__DBConnection=Server=mssql;Database=StudentDb_Blazor;User Id=sa;Password=bb123456??
             - INITDB=true
-
-            - ASPNETCORE_ENVIRONMENT=Development
         depends_on:
             - mssql
 
@@ -41,7 +39,6 @@ services:
             - baseAddress=http://webapi/
             - ConnectionStrings__DBConnection=Server=mssql;Database=StudentDb_Blazor;User Id=sa;Password=bb123456??;
             - DBHOST=mysql
-            - ASPNETCORE_ENVIRONMENT=Development
         depends_on:
             - mssql
 
@@ -62,7 +59,7 @@ services:
             - frontend
 
 volumes:
-    mssqlData:
+    blazormssqlData:
 
 networks:
     frontend:

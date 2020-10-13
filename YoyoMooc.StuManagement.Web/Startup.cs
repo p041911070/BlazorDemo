@@ -1,23 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using YoyoMooc.StuManagement.Api.Services;
-using YoyoMooc.StuManagement.Models;
 using YoyoMooc.StuManagement.Web.Hubs;
 
 namespace YoyoMooc.StuManagement.Web
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
 
         public IWebHostEnvironment env { get; set; }
@@ -27,7 +20,6 @@ namespace YoyoMooc.StuManagement.Web
             Configuration = configuration;
             this.env = env;
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -45,44 +37,17 @@ namespace YoyoMooc.StuManagement.Web
             {
                 baseAddress = "http://localhost:3238/";
 
-
-                baseAddress = "https://localhost:44312/";
+                //   baseAddress = "https://localhost:44312/";
             }
-
-
-            baseAddress = Configuration["baseAddress"];
-
+            else
+            {
+                baseAddress = Configuration["baseAddress"];
+            }
 
             services.AddHttpClient<IStudentService, StudentService>(client =>
             {
-
-
-
-
                 client.BaseAddress = new Uri(baseAddress);
-
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

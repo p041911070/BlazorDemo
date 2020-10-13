@@ -1,42 +1,50 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace YoyoMooc.StuManagement.Web.Pages
 {
-	public class ChatMessageBase : ComponentBase
-	{
-		protected HubConnection _hubConnection;
-		protected List<string> _messages = new List<string>();
-		protected string _userInput;
-		protected string _messageInput;
+    public class ChatMessageBase : ComponentBase
+    {
+        protected HubConnection _hubConnection;
 
-		[Inject]
-		private NavigationManager NavigationManager { get; set; }
+        [Inject]
+        public IConfiguration Configuration { get; set; }
 
-		protected async override Task OnInitializedAsync()
-		{
-			_hubConnection = new HubConnectionBuilder()
-				.WithUrl(NavigationManager.ToAbsoluteUri("http://localhost/chatHub"))
-				.Build();
+        protected List<string> _messages = new List<string>();
+        protected string _userInput;
+        protected string _messageInput;
 
-			_hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-			{
-				var encodedMsg = $"{user}: {message}";
-				_messages.Add(encodedMsg);
-				StateHasChanged();
-			});
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
 
-			await _hubConnection.StartAsync();
-		}
+        protected async override Task OnInitializedAsync()
+        {
+            var baseaddress = Configuration["webAddress"] + "chatHub";
+            //"http://localhost:3368/chatHub"
 
-		protected async Task Send()
-		{
-			await _hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
-		}
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl(NavigationManager.ToAbsoluteUri(baseaddress))
+                .Build();
 
-		public bool IsConnected =>
-			_hubConnection.State == HubConnectionState.Connected;
-	}
+            _hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+                var encodedMsg = $"{user}: {message}";
+                _messages.Add(encodedMsg);
+                StateHasChanged();
+            });
+
+            await _hubConnection.StartAsync();
+        }
+
+        protected async Task Send()
+        {
+            await _hubConnection.SendAsync("SendMessage", _userInput, _messageInput);
+        }
+
+        public bool IsConnected =>
+            _hubConnection.State == HubConnectionState.Connected;
+    }
 }
